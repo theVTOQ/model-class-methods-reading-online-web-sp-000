@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   helper_method :params
 
   def index
-    @posts = Post.all
+    #@posts = Post.all
     @authors = Author.all
 
     if !params[:author].blank?
