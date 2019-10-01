@@ -23,6 +23,10 @@ class Post < ActiveRecord::Base
   end
 
   def self.from_today
-    where("created_at <=?", Time.zone.today.beginning_of_day)
+    where("created_at >=?", Time.zone.today.beginning_of_day)
+  end
+
+  def sefl.old_news
+    where("created_at <?", Time.zone.today.beginning_of_day)
   end
 end
