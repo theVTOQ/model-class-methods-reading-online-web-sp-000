@@ -3,6 +3,17 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @authors = Author.all
+
+    if !params[:author].blank? 
+      @posts = Post.where(author: params[:author]) 
+    elsif !params[:date].blank? 
+      if params[:date] == "Today" 
+        @posts = Post.where("created_at >=?", Time.zone.today.beginning_of_day) 
+      else 
+        @posts = Post.where("created_at <?", Time.zone.today.beginning_of_day) 
+      end 
+    end 
   end
 
   def show
